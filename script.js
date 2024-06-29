@@ -1,4 +1,4 @@
-let intentos = 6;
+let intentos = 5;
 let palabra = "";
 
 // Obtener palabra random de API
