@@ -110,7 +110,7 @@ function terminar(status) {
     }, "1200");
   } else {
     dialogo.innerHTML = `<h1>¡Perdiste!</h1>
-    <p>La palabra era ${palabra}</p>
+    <p>La palabra era <a href="https://www.google.com/search?&q=${palabra}+definition" target="_blank"<p>${palabra}</p></a></p>
     <button id="reload">Volver a intentar</button>`;
     dialogo.showModal();
     const reintentar = document.getElementById("reload");
