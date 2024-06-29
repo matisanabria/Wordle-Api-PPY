@@ -123,13 +123,10 @@ function nota() {
   clics--;
   if (clics == 0) {
     clics = 5;
-    dialogo.innerHTML = `<p>Querido evaluador:</p>
-      <p>Le agradezco por indagar en mi página, 
-      está hecha con mucho amor y lágrimas, no por
-      no entender, sino porque odio JS puro (viva Typescript).</p>
-      <p>Le pido por favor que considere ponerme la
-      nota más alta :) me haría muy feliz.</p>
-      <p>Un saludo, Mati ❤</p>
+    dialogo.innerHTML = `<p class="nota">Querido evaluador:</p>
+      <p class="nota">Le agradezco por indagar en mi página, está hecha con mucho amor y lágrimas, más lágrimas que amor,  espero le guste :)</p>
+      <p class="nota">Le pido por favor que considere ponerme una nota alta, hágalo por todos los que no saben centrar un div 😭</p>
+      <p class="nota">Un saludo, Mati ❤</p>
       <button id="volver">Volver </button>`;
     dialogo.showModal();
     const volver = document.getElementById("volver");
