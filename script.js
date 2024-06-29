@@ -50,7 +50,6 @@ function intentar() {
   const ROW = document.createElement("div");
 
   ROW.className = "row";
-  
 
   // Si la palabra tiene menos de 5 letras no hace nada, si tiene un número tampoco
   if (intento.length < 5 || /\d/.test(intento)) {
@@ -99,14 +98,16 @@ function intentar() {
 // Si el juego termina, deshabilita los input y muestra dialogo
 function terminar(status) {
   if (status === true) {
-    dialogo.innerHTML = `<h1>¡Ganaste!</h1>
+    setTimeout(() => {
+      dialogo.innerHTML = `<h1>¡Ganaste!</h1>
     <p>Acertaste la palabra</p>
-    <p>${palabra}</p>
+    <strong><a href="https://www.google.com/search?&q=${palabra}+definition" target="_blank"<p>${palabra}</p></a></strong>
     <button id="reload">Jugar de nuevo </button>`;
-    dialogo.showModal();
-    const reintentar = document.getElementById("reload");
-    reintentar.addEventListener("click", recargar);
-    reintentar.style.backgroundColor = "#3c9040";
+      dialogo.showModal();
+      const reintentar = document.getElementById("reload");
+      reintentar.addEventListener("click", recargar);
+      reintentar.style.backgroundColor = "#3c9040";
+    }, "1200");
   } else {
     dialogo.innerHTML = `<h1>¡Perdiste!</h1>
     <p>La palabra era ${palabra}</p>
@@ -131,7 +132,7 @@ function nota() {
       <button id="volver">Volver </button>`;
     dialogo.showModal();
     const volver = document.getElementById("volver");
-    volver.addEventListener("click",()=>dialogo.close() );
+    volver.addEventListener("click", () => dialogo.close());
     volver.style.backgroundColor = "#3c9040";
   } else {
     return;
