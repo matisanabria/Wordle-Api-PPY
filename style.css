@@ -111,3 +111,14 @@ button:active {
   font-size: 42px;
   color: black;
 }
+#volver{
+  display: block;
+  margin: 0 auto;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #3ce7c2;
+  font-family: "Poppins";
+  font-size: 18px;
+  color: white;
+}

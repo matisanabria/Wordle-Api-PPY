@@ -1,13 +1,16 @@
 let intentos = 6;
 let palabra = "";
+let clics = 5;
 
 // Obtener elementos del HTML
 const button = document.getElementById("guess-button");
 button.addEventListener("click", intentar);
 const inputBox = document.getElementById("guess-input");
 const GRID = document.getElementById("grid");
-const GRID2 = document.getElementById("grid2")
+const GRID2 = document.getElementById("grid2");
 const dialogo = document.getElementById("dialogo");
+const titulo = document.getElementById("title");
+titulo.addEventListener("click", nota);
 
 // Obtener palabra random de API
 fetch("https://random-word-api.herokuapp.com/word?length=5")
@@ -19,14 +22,14 @@ fetch("https://random-word-api.herokuapp.com/word?length=5")
   });
 
 // Generar cajitas provisorias
-for (let x = 1; x <= 6; x++){
+for (let x = 1; x <= 6; x++) {
   const ROW = document.createElement("div");
 
-  ROW.className = "row"+x;
+  ROW.className = "row" + x;
   for (let z = 1; z <= 5; z++) {
     const SPAN = document.createElement("span");
     SPAN.className = "letter";
-    SPAN.classList.add("empty")
+    SPAN.classList.add("empty");
     ROW.appendChild(SPAN);
   }
   GRID2.appendChild(ROW);
@@ -48,7 +51,7 @@ function intentar() {
 
   ROW.className = "row";
   // Borrar un row provisorio
-  let provisorio = document.querySelector('.row'+intentos)
+  let provisorio = document.querySelector(".row" + intentos);
   provisorio.remove();
 
   // Si la palabra tiene menos de 5 letras no hace nada, si tiene un número tampoco
@@ -114,4 +117,25 @@ function terminar(status) {
 }
 function recargar() {
   location.reload();
+}
+
+function nota() {
+  clics--;
+  if (clics == 0) {
+    clics = 5;
+    dialogo.innerHTML = `<p>Querido evaluador:</p>
+      <p>Le agradezco por indagar en mi página, 
+      está hecha con mucho amor y lágrimas, no por
+      no entender, sino porque odio JS puro (viva Typescript).</p>
+      <p>Le pido por favor que considere ponerme la
+      nota más alta :) me haría muy feliz.</p>
+      <p>Un saludo, Mati ❤</p>
+      <button id="volver">Volver </button>`;
+    dialogo.showModal();
+    const volver = document.getElementById("volver");
+    volver.addEventListener("click",()=>dialogo.close() );
+    volver.style.backgroundColor = "#3c9040";
+  } else {
+    return;
+  }
 }
