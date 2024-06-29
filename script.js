@@ -1,5 +1,6 @@
 let intentos = 6;
-let diccionario = [
+let palabra = ""
+/*let diccionario = [
   "CASAS",
   "PERRO",
   "GATOS",
@@ -11,7 +12,15 @@ let diccionario = [
   "VOLAR",
   "BEBER",
 ];
-const palabra = diccionario[Math.floor(Math.random() * diccionario.length)];
+const palabra = diccionario[Math.floor(Math.random() * diccionario.length)];*/
+
+// Obtener palabra random de API
+fetch("https://random-word-api.herokuapp.com/word?length=5")
+  .then((response) => response.json())
+  .then((response) => {
+    palabra = response[0].toUpperCase()
+    console.log(palabra);
+  });
 
 // Obtener elementos del HTML
 const button = document.getElementById("guess-button");
