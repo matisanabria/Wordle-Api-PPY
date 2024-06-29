@@ -1,19 +1,23 @@
 let intentos = 5;
 let palabra = "";
 
-// Obtener palabra random de API
-fetch("https://random-word-api.herokuapp.com/word?length=5")
-  .then((response) => response.json())
-  .then((response) => {
-    palabra = response[0].toUpperCase();
-    console.log(palabra);
-  });
 
 // Obtener elementos del HTML
 const button = document.getElementById("guess-button");
 button.addEventListener("click", intentar);
 const inputBox = document.getElementById("guess-input");
 const GRID = document.getElementById("grid");
+const dialogo = document.getElementById("dialogo");
+
+// Obtener palabra random de API
+fetch("https://random-word-api.herokuapp.com/word?length=5")
+  .then((response) => response.json())
+  .then((response) => {
+    palabra = response[0].toUpperCase();
+    console.log(palabra);
+    button.disabled = false; // Para evitar errores
+  });
+
 
 // Leer el intento
 function leerIntento() {
@@ -39,7 +43,6 @@ function intentar() {
   } else {
     inputBox.style.borderColor = "#ccc";
     inputBox.style.boxShadow = "none";
-
   }
 
   for (let i = 0; i < palabra.length; i++) {
@@ -63,21 +66,36 @@ function intentar() {
   GRID.appendChild(ROW);
   // Si gana se envía un mensaje de que ganó a la función terminar
   if (intento === palabra) {
-    terminar("<h1>GANASTE!😀</h1>");
+    terminar(true);
     return;
   }
 
   // Se restan intentos por cada turno, si llega a 0, pierde y envía un mensaje de que perdió a la función terminar
   if (intentos === 0) {
-    terminar("<h1>PERDISTE!😖</h1>");
+    terminar(false);
   }
   intentos--;
 }
-// Si el juego termina, deshabilita los input y muestra el mensaje enviado anteriormente
-function terminar(mensaje) {
-  const INPUT = document.getElementById("guess-input");
-  INPUT.disabled = true;
-  button.disabled = true;
-  let contenedor = document.getElementById("guesses");
-  contenedor.innerHTML = mensaje;
+// Si el juego termina, deshabilita los input y muestra dialogo
+function terminar(status) {
+  if (status === true) {
+    dialogo.innerHTML = `<h1>¡Ganaste!</h1>
+    <p>Acertaste la palabra</p>
+    <p>${palabra}</p>
+    <button id="reload">Jugar de nuevo </button>`;
+    dialogo.showModal();
+    const reintentar = document.getElementById("reload");
+    reintentar.addEventListener("click", recargar);
+    reintentar.style.backgroundColor = "#3c9040";
+  } else {
+    dialogo.innerHTML = `<h1>¡Perdiste!</h1>
+    <p>La palabra era ${palabra}</p>
+    <button id="reload">Volver a intentar</button>`;
+    dialogo.showModal();
+    const reintentar = document.getElementById("reload");
+    reintentar.addEventListener("click", recargar);
+  }
+}
+function recargar() {
+  location.reload();
 }
