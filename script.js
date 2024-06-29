@@ -14,7 +14,6 @@ const button = document.getElementById("guess-button");
 button.addEventListener("click", intentar);
 const inputBox = document.getElementById("guess-input");
 const GRID = document.getElementById("grid");
-const cuadros = document.getElementById("provisional");
 
 // Leer el intento
 function leerIntento() {
