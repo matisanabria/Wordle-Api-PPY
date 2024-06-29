@@ -1,12 +1,12 @@
-let intentos = 5;
+let intentos = 6;
 let palabra = "";
-
 
 // Obtener elementos del HTML
 const button = document.getElementById("guess-button");
 button.addEventListener("click", intentar);
 const inputBox = document.getElementById("guess-input");
 const GRID = document.getElementById("grid");
+const GRID2 = document.getElementById("grid2")
 const dialogo = document.getElementById("dialogo");
 
 // Obtener palabra random de API
@@ -18,6 +18,19 @@ fetch("https://random-word-api.herokuapp.com/word?length=5")
     button.disabled = false; // Para evitar errores
   });
 
+// Generar cajitas provisorias
+for (let x = 1; x <= 6; x++){
+  const ROW = document.createElement("div");
+
+  ROW.className = "row"+x;
+  for (let z = 1; z <= 5; z++) {
+    const SPAN = document.createElement("span");
+    SPAN.className = "letter";
+    SPAN.classList.add("empty")
+    ROW.appendChild(SPAN);
+  }
+  GRID2.appendChild(ROW);
+}
 
 // Leer el intento
 function leerIntento() {
@@ -34,6 +47,9 @@ function intentar() {
   const ROW = document.createElement("div");
 
   ROW.className = "row";
+  // Borrar un row provisorio
+  let provisorio = document.querySelector('.row'+intentos)
+  provisorio.remove();
 
   // Si la palabra tiene menos de 5 letras no hace nada, si tiene un número tampoco
   if (intento.length < 5 || /\d/.test(intento)) {
@@ -71,7 +87,7 @@ function intentar() {
   }
 
   // Se restan intentos por cada turno, si llega a 0, pierde y envía un mensaje de que perdió a la función terminar
-  if (intentos === 0) {
+  if (intentos === 1) {
     terminar(false);
   }
   intentos--;
