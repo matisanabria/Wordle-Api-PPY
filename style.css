@@ -9,10 +9,10 @@ body {
 h1 {
   text-align: center;
   margin-top: 20px;
-  margin-bottom: 1em;
+  margin-bottom: 20px;
   font-size: 24px;
   font-weight: 800;
-  color:#585757;
+  color: #585757;
 }
 
 #guess-input {
@@ -26,7 +26,6 @@ h1 {
   border: 1px solid #ccc;
   border-radius: 20px;
   text-align: center;
-  
 }
 
 #guess-button {
@@ -71,4 +70,14 @@ button:active {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+.footer {
+  margin-bottom: 0;
+}
+.empty {
+  font-size: 20px;
+  padding: 13px 17px 13px 17px;
+  margin: 0;
+  background-color: white;
+  border: 4px solid #888888;
 }

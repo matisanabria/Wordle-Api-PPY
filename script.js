@@ -1,24 +1,11 @@
 let intentos = 6;
-let palabra = ""
-/*let diccionario = [
-  "CASAS",
-  "PERRO",
-  "GATOS",
-  "NIÑOS",
-  "LIBRO",
-  "FLORA",
-  "CIELO",
-  "SOLAR",
-  "VOLAR",
-  "BEBER",
-];
-const palabra = diccionario[Math.floor(Math.random() * diccionario.length)];*/
+let palabra = "";
 
 // Obtener palabra random de API
 fetch("https://random-word-api.herokuapp.com/word?length=5")
   .then((response) => response.json())
   .then((response) => {
-    palabra = response[0].toUpperCase()
+    palabra = response[0].toUpperCase();
     console.log(palabra);
   });
 
@@ -26,6 +13,8 @@ fetch("https://random-word-api.herokuapp.com/word?length=5")
 const button = document.getElementById("guess-button");
 button.addEventListener("click", intentar);
 const inputBox = document.getElementById("guess-input");
+const GRID = document.getElementById("grid");
+const cuadros = document.getElementById("provisional");
 
 // Leer el intento
 function leerIntento() {
@@ -38,7 +27,7 @@ function leerIntento() {
 function intentar() {
   // Leer intento al presionar botón
   const intento = leerIntento();
-  const GRID = document.getElementById("grid");
+
   const ROW = document.createElement("div");
 
   ROW.className = "row";
@@ -51,6 +40,7 @@ function intentar() {
   } else {
     inputBox.style.borderColor = "#ccc";
     inputBox.style.boxShadow = "none";
+
   }
 
   for (let i = 0; i < palabra.length; i++) {
