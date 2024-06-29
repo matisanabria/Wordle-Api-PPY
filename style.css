@@ -47,6 +47,7 @@ button:active {
   border-radius: 5px;
   padding: 13px 20px 13px 20px;
   margin: 3px;
+  margin-bottom: 10px;
   min-width: 20px;
   text-align: center;
   font-family: "Poppins";
@@ -54,10 +55,6 @@ button:active {
   font-weight: 600;
   color: white;
   display: inline-block;
-}
-
-.row {
-  margin: 0px;
 }
 
 .input-area {
@@ -70,10 +67,10 @@ button:active {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
+  margin: 0px;
 }
 #grid2 {
-  margin-top: 4px;
+  
   width: 100%;
   display: flex;
   flex-direction: column;
