@@ -50,9 +50,7 @@ function intentar() {
   const ROW = document.createElement("div");
 
   ROW.className = "row";
-  // Borrar un row provisorio
-  let provisorio = document.querySelector(".row" + intentos);
-  provisorio.remove();
+  
 
   // Si la palabra tiene menos de 5 letras no hace nada, si tiene un número tampoco
   if (intento.length < 5 || /\d/.test(intento)) {
@@ -63,6 +61,9 @@ function intentar() {
     inputBox.style.borderColor = "#ccc";
     inputBox.style.boxShadow = "none";
   }
+  // Borrar un row provisorio
+  let provisorio = document.querySelector(".row" + intentos);
+  provisorio.remove();
 
   for (let i = 0; i < palabra.length; i++) {
     const SPAN = document.createElement("span");
